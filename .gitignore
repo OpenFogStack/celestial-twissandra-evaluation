@@ -1,0 +1,5 @@
+cassandra/tmp
+server/cql_proxy
+client/http_proxyclient/client.img
+server/server.img
+cassandra/rootfs.img
