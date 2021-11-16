@@ -25,4 +25,5 @@ apk add --no-cache python3-dev
 apk add --no-cache py3-pip
 python3 -m pip install --no-cache-dir  wheel
 python3 -m pip install --no-cache-dir meinheld==1.0.2 gunicorn==20.1.0
-python3 -m pip install --no-cache-dir cassandra-driver==3.6.0 Django==1.11.29 python-lorem==1.1.2 pytz==2021.3 simplejson==3.17.5 tqdm==4.62.3 beautifulsoup4==4.10.0
+CASS_DRIVER_NO_CYTHON=1 python3 -m pip install --no-cache-dir cassandra-driver==3.6.0
+python3 -m pip install --no-cache-dir Django==1.11.29 python-lorem==1.1.2 pytz==2021.3 simplejson==3.17.5 tqdm==4.62.3 beautifulsoup4==4.10.0

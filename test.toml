@@ -1,0 +1,65 @@
+model = "Kepler"
+
+bbox = [-90.0, -180.0, 90.0, 180.0]
+interval = 1
+animation = false
+hosts = ["192.168.0.5:1969"]
+peeringhosts = ["192.168.0.5:1970"]
+dbhost = "192.168.0.2:8000"
+database = true
+
+[networkparams]
+islpropagation = 3.336e-6
+bandwidth = 10_000
+mincommsaltitude = 100_000
+minelevation = 0
+gstpropagation = 3.336e-6
+groundstationconnectiontype = "all"
+
+[computeparams]
+vcpu_count = 0
+mem_size_mib = 512
+ht_enabled = false
+bootparams = "random.trust_cpu=on"
+kernel = "vmlinux.bin"
+rootfs = "server.img"
+disk_size_mib = 20_000
+
+[[shell]]
+planes = 10
+sats = 10
+altitude = 1000
+inclination = 53.0
+arcofascendingnodes = 360.0
+eccentricity = 0.0
+
+[shell.computeparams]
+vcpu_count = 0
+
+[[groundstation]]
+name = "Berlin"
+lat = 37.3382082
+long = -121.8863286
+
+[groundstation.computeparams]
+vcpu_count = 4
+mem_size_mib = 4096
+ht_enabled = false
+bootparams = ""
+kernel = "vmlinux.bin"
+rootfs = "client.img"
+disk_size_mib = 20_000
+
+[[groundstation]]
+name = "tw1"
+lat = 38.9551451184041
+long = -77.40442108396236
+
+[groundstation.computeparams]
+vcpu_count = 4
+mem_size_mib = 4096
+ht_enabled = false
+bootparams = ""
+kernel = "vmlinux.bin"
+rootfs = "combined.img"
+disk_size_mib = 20_000

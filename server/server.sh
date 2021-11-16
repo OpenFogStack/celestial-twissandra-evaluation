@@ -1,5 +1,4 @@
 #!/bin/sh
-
 #
 # This file is part of Celestial's Twissandra Evaluation
 # (https://github.com/OpenFogStack/celestial-twissandra-evaluation).
@@ -17,9 +16,28 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
-
+IP=$(/sbin/ip route | awk '/default/ { print $3 }')
+echo nameserver "$IP" > /etc/resolv.conf
 # configure and run cassandra proxy
-./cql_proxy --hosts=cass1.gst.celestial,cass2.gst.celestial,cass3.gst.celestial &
-export CASSANDRA_HOST="localhost"
+sleep 30
+echo "ls /"
+ls -la /
+echo "ls"
+ls
+echo "pwd"
+pwd
 
-gunicorn -k egg:meinheld#gunicorn_worker -c "twissandra.wsgi:application" "/gunicorn_conf.py"
+ping cass1.gst.celestial -c 2
+ping 10.255.0.10 -c 2
+while ! nc -z "10.255.0.10" "9042" ; do echo "cannot reach cass1.gst.celestial:9042" ; sleep 1 ; done
+
+./cql_proxy.bin --hosts=cass1.gst.celestial &
+export CASSANDRA_HOST="localhost"
+sleep 10
+cd twissandra
+gunicorn -k egg:meinheld#gunicorn_worker -c "./gunicorn_conf.py"  "twissandra.wsgi:application"
+cd /
+cd rom/twissandra
+gunicorn -k egg:meinheld#gunicorn_worker -c "./gunicorn_conf.py" "twissandra.wsgi:application"
+cd /
+cat twissandra/wsgi.py

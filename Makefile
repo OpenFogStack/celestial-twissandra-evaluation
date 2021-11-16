@@ -18,19 +18,22 @@
 
 .PHONY: all
 
-all: client.img server.img cassandra.img
+all: client/client.img server/server.img cassandra/cassandra.img combined/combined.img
 
-client/http_proxy: client/http_proxy.go
-	CGOENABLED=0 GGOOS=linux GOARCH=amd64 go build -o client/http_proxy client/http_proxy.go
+client/tcp_proxy.bin: client/tcp_proxy.go
+	CGOENABLED=0 GOOS=linux GOARCH=amd64 go build -o client/tcp_proxy.bin client/tcp_proxy.go
 
-client/client.img: client/client.sh client/client-base.sh client/http_proxy twissandra/benchmark/locustfile.py
-	@docker run --rm -v $(PWD)/client/client.sh:/app.sh -v $(PWD)/client/client-base.sh:/base.sh -v $(PWD)/client/http_proxy:/files/http_proxy -v $(PWD)/twissandra/benchmark/locustfile.py:/files/locustfile.py -v $(PWD)/client:/opt/code --privileged rootfsbuilder $@
+client/client.img: client/client.sh client/client-base.sh client/tcp_proxy.bin twissandra/benchmark/locustfile.py
+	@docker run --rm -v $(PWD)/client/client.sh:/app.sh -v $(PWD)/client/client-base.sh:/base.sh -v $(PWD)/client/tcp_proxy.bin:/files/tcp_proxy.bin -v $(PWD)/twissandra/benchmark/locustfile.py:/files/locustfile.py -v $(PWD):/opt/code --privileged rootfsbuilder $@
 
-cassandra/cassandra.img: cassandra/Dockerfile cassandra/create-rootfs.sh cassandra/interfaces
-	@cd cassandra && sh create-roots.sh && cd ..
+cassandra/cassandra.img: cassandra/cassandra.sh cassandra/cassandra-base.sh
+	@docker run --rm -v $(PWD)/cassandra/cassandra.sh:/app.sh -v $(PWD)/cassandra/cassandra-base.sh:/base.sh -v $(PWD):/opt/code --privileged rootfsbuilder $@
 
-server/cql_proxy: server/cql_proxy.go
-	CGOENABLED=0 GOOS=linux GOARCH=amd64 go build -o server/cql_proxy server/cql_proxy.go
+server/cql_proxy.bin: server/cql_proxy.go
+	CGOENABLED=0 GOOS=linux GOARCH=amd64 go build -o server/cql_proxy.bin server/cql_proxy.go
 
-server/server.img: server/server.sh server/server-base.sh server/gunicorn_conf.py twissandra/twissandra twissandra/__init__.py twissandra/manage.py twissandra/twissandra
-	@docker run --rm -v $(PWD)/server/server.sh:/app.sh -v $(PWD)/server/server-base.sh:/base.sh -v $(PWD)/server/cql_proxy:/files/cql_proxy -v $(PWD)/server/gunicorn_conf.py:/gunicorn_conf.py -v $(PWD)/twissandra/__init__.py:/files/__init__.py -v $(PWD)/twissandra/manage.py:/files/manage.py -v $(PWD)/twissandra/twissandra:/files/twissandra -v $(PWD)/server:/opt/code --privileged rootfsbuilder $@
+server/server.img: server/server.sh server/cql_proxy.bin server/server-base.sh server/gunicorn_conf.py twissandra/twissandra twissandra/__init__.py twissandra/manage.py twissandra/twissandra
+	@docker run --rm -v $(PWD)/server/server.sh:/app.sh -v $(PWD)/server/server-base.sh:/base.sh -v $(PWD)/server/cql_proxy.bin:/files/cql_proxy.bin -v $(PWD)/server/gunicorn_conf.py:/files/twissandra/gunicorn_conf.py -v $(PWD)/twissandra/__init__.py:/files/twissandra/__init__.py -v $(PWD)/twissandra/manage.py:/files/twissandra/manage.py -v $(PWD)/twissandra/twissandra:/files/twissandra/twissandra -v $(PWD):/opt/code --privileged rootfsbuilder $@
+
+combined/combined.img: combined/combined.sh combined/combined-base.sh
+	@docker run --rm -v $(PWD)/combined/combined.sh:/app.sh -v $(PWD)/combined/combined-base.sh:/base.sh -v $(PWD)/server/gunicorn_conf.py:/files/twissandra/gunicorn_conf.py -v $(PWD)/twissandra/__init__.py:/files/twissandra/__init__.py -v $(PWD)/twissandra/manage.py:/files/twissandra/manage.py -v $(PWD)/twissandra/twissandra:/files/twissandra/twissandra -v $(PWD):/opt/code --privileged rootfsbuilder $@

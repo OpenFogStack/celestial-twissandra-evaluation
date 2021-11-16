@@ -1,5 +1,11 @@
 cassandra/tmp
 server/cql_proxy
-client/http_proxyclient/client.img
+server/cql_proxy.bin
+client/http_proxy
+client/http_proxy.bin
+client/client.img
 server/server.img
 cassandra/rootfs.img
+cassandra/cassandra.img
+combined/combined.img
+client/tcp_proxy.bin

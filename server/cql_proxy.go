@@ -32,6 +32,8 @@ func main() {
 	// get cassandra endpoints
 	hosts := flag.String("hosts", "", "list of cassandra hosts, comma separated")
 
+	flag.Parse()
+
 	endpoints := strings.Split(*hosts, ",")
 	if len(endpoints) == 0 {
 		panic("no cassandra hosts provided")
@@ -55,13 +57,13 @@ func main() {
 	go func() {
 		err = p.ListenAndServe(":9042")
 		if err != nil {
-			panic(err)
+			logger.Error(err.Error())
 		}
 	}()
 
 	// every second
 	for {
-		time.Sleep(1 * time.Second)
+		time.Sleep(10 * time.Second)
 		best := curr
 		// max int
 		bestLatency := int(^uint(0) >> 1)
@@ -70,7 +72,8 @@ func main() {
 		for _, endpoint := range endpoints {
 			pinger, err := ping.NewPinger(endpoint)
 			if err != nil {
-				panic(err)
+				logger.Error(err.Error())
+				continue
 			}
 
 			pinger.SetPrivileged(true)
@@ -78,7 +81,8 @@ func main() {
 
 			err = pinger.Run() // Blocks until finished.
 			if err != nil {
-				panic(err)
+				logger.Error(err.Error())
+				continue
 			}
 
 			rtt := pinger.Statistics().AvgRtt.Nanoseconds() // get send/receive/duplicate/rtt stats
@@ -107,7 +111,7 @@ func main() {
 		go func() {
 			err = p.ListenAndServe(":9042")
 			if err != nil {
-				panic(err)
+				logger.Error(err.Error())
 			}
 		}()
 

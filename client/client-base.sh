@@ -23,7 +23,7 @@ apk add --no-cache gcc g++ libc-dev libffi-dev make
 apk add --no-cache python3
 apk add --no-cache python3-dev
 apk add --no-cache py3-pip
-python3 -m pip install --no-cache-dir wheel
-python3 -m pip install --no-cache-dir locust==2.4.1 beautifulsoup4==4.10.0 python-lorem==1.1.2
+python3 -m pip install --extra-index-url https://alpine-wheels.github.io/index --no-cache-dir wheel
+python3 -m pip install --extra-index-url https://alpine-wheels.github.io/index --no-cache-dir locust==2.4.1 beautifulsoup4==4.10.0 python-lorem==1.1.2
 
 mkdir -p stats
