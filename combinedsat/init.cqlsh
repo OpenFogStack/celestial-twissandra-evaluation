@@ -1,0 +1,70 @@
+CREATE KEYSPACE twissandra
+WITH replication = {
+    'class': 'NetworkTopologyStrategy',
+    'CASS0' : 1,
+    'CASS10' : 1,
+    'CASS20' : 1,
+    'CASS30' : 1,
+    'CASS175' : 1,
+    'CASS185' : 1,
+    'CASS195' : 1,
+    'CASS340' : 1,
+    'CASS350' : 1,
+    'CASS360' : 1,
+    'CASS370' : 1,
+    'CASS515' : 1,
+    'CASS525' : 1,
+    'CASS535' : 1,
+    'CASS680' : 1,
+    'CASS690' : 1,
+    'CASS700' : 1,
+    'CASS710' : 1,
+    'CASS855' : 1,
+    'CASS865' : 1,
+    'CASS875' : 1,
+    'CASS1020' : 1,
+    'CASS1030' : 1,
+    'CASS1040' : 1,
+    'CASS1050' : 1
+};
+
+USE twissandra;
+
+CREATE TABLE users (
+    username text PRIMARY KEY,
+    password text
+);
+
+CREATE TABLE friends (
+    username text,
+    friend text,
+    since timestamp,
+    PRIMARY KEY (username, friend)
+);
+
+CREATE TABLE followers (
+    username text,
+    follower text,
+    since timestamp,
+    PRIMARY KEY (username, follower)
+);
+
+CREATE TABLE tweets (
+    tweet_id uuid PRIMARY KEY,
+    username text,
+    body text
+);
+
+CREATE TABLE userline (
+    username text,
+    time timeuuid,
+    tweet_id uuid,
+    PRIMARY KEY (username, time)
+) WITH CLUSTERING ORDER BY (time DESC);
+
+CREATE TABLE timeline (
+    username text,
+    time timeuuid,
+    tweet_id uuid,
+    PRIMARY KEY (username, time)
+) WITH CLUSTERING ORDER BY (time DESC);

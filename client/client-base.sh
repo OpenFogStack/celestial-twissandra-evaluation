@@ -19,11 +19,26 @@
 #
 
 apk update
-apk add --no-cache gcc g++ libc-dev libffi-dev make
+apk add --no-cache gcc g++ libc-dev libffi-dev make curl
 apk add --no-cache python3
 apk add --no-cache python3-dev
 apk add --no-cache py3-pip
-python3 -m pip install --extra-index-url https://alpine-wheels.github.io/index --no-cache-dir wheel
-python3 -m pip install --extra-index-url https://alpine-wheels.github.io/index --no-cache-dir locust==2.4.1 beautifulsoup4==4.10.0 python-lorem==1.1.2
+python3 -m pip install --no-cache-dir wheel
+python3 -m pip install pyzmq-22.3.0-cp39-cp39-linux_x86_64.whl
+rm pyzmq-22.3.0-cp39-cp39-linux_x86_64.whl
+python3 -m pip install Brotli-1.0.9-cp39-cp39-linux_x86_64.whl
+rm Brotli-1.0.9-cp39-cp39-linux_x86_64.whl
+python3 -m pip install gevent-21.8.0-cp39-cp39-linux_x86_64.whl
+rm gevent-21.8.0-cp39-cp39-linux_x86_64.whl
+python3 -m pip install --no-cache-dir pyzmq==22.3.0
+python3 -m pip install --no-cache-dir locust==2.4.1 beautifulsoup4==4.10.0 python-lorem==1.1.2
+
+mkdir -p /etc/security
+echo "*    soft nofile 64000" > /etc/security/limits.conf
+echo "*    hard nofile 64000" >> /etc/security/limits.conf
+echo "root soft nofile 64000" >> /etc/security/limits.conf
+echo "root hard nofile 64000" >> /etc/security/limits.conf
+
+echo "fs.file-max = 64000" >> /etc/sysctl.conf
 
 mkdir -p stats

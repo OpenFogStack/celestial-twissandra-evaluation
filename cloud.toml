@@ -1,0 +1,1273 @@
+model = "Kepler"
+
+bbox = [-10.0, -10.0, 10.0, 10.0]
+interval = 5
+animation = false
+hosts = ["192.168.0.6:1969", "192.168.0.7:1969", "192.168.0.8:1969", "192.168.0.9:1969"]
+peeringhosts = ["192.168.0.6:1970", "192.168.0.7:1970", "192.168.0.8:1970", "192.168.0.9:1970"]
+dbhost = "192.168.0.2:8000"
+database = true
+
+[networkparams]
+islpropagation = 3.336e-6
+bandwidth = 10_000
+mincommsaltitude = 100_000
+minelevation = 40
+gstpropagation = 3.336e-6
+groundstationconnectiontype = "shortest"
+
+[computeparams]
+vcpu_count = 0
+mem_size_mib = 4096
+ht_enabled = false
+bootparams = ""
+kernel = "vmlinux.bin"
+rootfs = "combined.bin"
+disk_size_mib =  20_000
+
+[[shell]]
+planes = 34
+sats = 34
+altitude = 630
+inclination = 51.9
+arcofascendingnodes = 360.0
+eccentricity = 0.0
+
+[shell.computeparams]
+vcpu_count = 0
+
+[[shell]]
+planes = 36
+sats = 36
+altitude = 610
+inclination = 42.0
+arcofascendingnodes = 360.0
+eccentricity = 0.0
+
+[shell.computeparams]
+vcpu_count = 0
+
+[[shell]]
+planes = 28
+sats = 28
+altitude = 590
+inclination = 33.0
+arcofascendingnodes = 360.0
+eccentricity = 0.0
+
+[shell.computeparams]
+vcpu_count = 0
+
+[[groundstation]]
+name = "tw1"
+lat = 50.1136
+long = 8.6797
+
+[groundstation.computeparams]
+vcpu_count = 16
+mem_size_mib = 16_384
+bootparams = " cgroup_enable=cpuset,memory swapaccount=1 random.trust_cpu=on "
+kernel = "vmlinux5"
+rootfs = "combined.img"
+disk_size_mib = 20_000
+
+[[groundstation]]
+name = "Paris"
+lat = 48.8566
+long = 2.3522
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "London"
+lat = 51.5072
+long = -0.1275
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Madrid"
+lat = 40.4167
+long = -3.7167
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Barcelona"
+lat = 41.3825
+long = 2.1769
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Berlin"
+lat = 52.5167
+long = 13.3833
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Kyiv"
+lat = 50.45
+long = 30.5236
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Birmingham"
+lat = 52.48
+long = -1.9025
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Rome"
+lat = 41.8931
+long = 12.4828
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Manchester"
+lat = 53.4794
+long = -2.2453
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Vienna"
+lat = 48.2083
+long = 16.3731
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Leeds"
+lat = 53.7997
+long = -1.5492
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Bucharest"
+lat = 44.4
+long = 26.0833
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Hamburg"
+lat = 53.55
+long = 10
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Warsaw"
+lat = 52.2167
+long = 21.0333
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Brussels"
+lat = 50.8333
+long = 4.3333
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Budapest"
+lat = 47.4983
+long = 19.0408
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Newcastle"
+lat = 55.0077
+long = -1.6578
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Munich"
+lat = 48.1372
+long = 11.5755
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Kharkiv"
+lat = 50
+long = 36.2292
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Birstall"
+lat = 52.6736
+long = -1.12
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "TheHague"
+lat = 52.0767
+long = 4.2986
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Belgrade"
+lat = 44.8167
+long = 20.4667
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Milan"
+lat = 45.4669
+long = 9.19
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Sofia"
+lat = 42.6979
+long = 23.3217
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Prague"
+lat = 50.0833
+long = 14.4167
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Sevilla"
+lat = 37.39
+long = -5.99
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Cologne"
+lat = 50.9422
+long = 6.9578
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Odesa"
+lat = 46.4775
+long = 30.7326
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Nice"
+lat = 43.7034
+long = 7.2663
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Dnipro"
+lat = 48.45
+long = 34.9833
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Amsterdam"
+lat = 52.3667
+long = 4.8833
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Zagreb"
+lat = 45.8
+long = 15.95
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Athens"
+lat = 37.9842
+long = 23.7281
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Chisinau"
+lat = 47.0228
+long = 28.8353
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Copenhagen"
+lat = 55.6761
+long = 12.5689
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Vilnius"
+lat = 54.6833
+long = 25.2833
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Lisbon"
+lat = 38.7452
+long = -9.1604
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Glasgow"
+lat = 55.8609
+long = -4.2514
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Naples"
+lat = 40.8333
+long = 14.25
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Toulouse"
+lat = 43.6045
+long = 1.444
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Malaga"
+lat = 36.7194
+long = -4.42
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Donetsk"
+lat = 48.0089
+long = 37.8042
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Antwerp"
+lat = 51.2206
+long = 4.4003
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Turin"
+lat = 45.0667
+long = 7.7
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Marseille"
+lat = 43.2964
+long = 5.37
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Liverpool"
+lat = 53.4
+long = -2.9833
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Southampton"
+lat = 50.9
+long = -1.4
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Portsmouth"
+lat = 50.8058
+long = -1.0872
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Valencia"
+lat = 39.47
+long = -0.3764
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Nottingham"
+lat = 52.95
+long = -1.15
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Krakow"
+lat = 50.0614
+long = 19.9372
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Frankfurt"
+lat = 50.1136
+long = 8.6797
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Zaporizhzhia"
+lat = 47.8378
+long = 35.1383
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Rennes"
+lat = 48.1147
+long = -1.6794
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Bristol"
+lat = 51.45
+long = -2.5833
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Lviv"
+lat = 49.8419
+long = 24.0315
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Bremen"
+lat = 53.1153
+long = 8.7975
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Grenoble"
+lat = 45.1715
+long = 5.7224
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Lodz"
+lat = 51.7769
+long = 19.4547
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Sheffield"
+lat = 53.3833
+long = -1.4667
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Palermo"
+lat = 38.1157
+long = 13.3613
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Zaragoza"
+lat = 41.6483
+long = -0.883
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Dusseldorf"
+lat = 51.2311
+long = 6.7724
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Utrecht"
+lat = 52.0908
+long = 5.1222
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Wroclaw"
+lat = 51.11
+long = 17.0325
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Nantes"
+lat = 47.2181
+long = -1.5528
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Stuttgart"
+lat = 48.7761
+long = 9.1775
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Rotterdam"
+lat = 51.9225
+long = 4.4792
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "KryvyiRih"
+lat = 47.9086
+long = 33.3433
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Montpellier"
+lat = 43.6119
+long = 3.8772
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Leipzig"
+lat = 51.3333
+long = 12.3833
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Dortmund"
+lat = 51.5139
+long = 7.4653
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Essen"
+lat = 51.4508
+long = 7.0131
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Genoa"
+lat = 44.4072
+long = 8.934
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "KingstonuponHull"
+lat = 53.7444
+long = -0.3325
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Dresden"
+lat = 51.05
+long = 13.74
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Palma"
+lat = 39.5667
+long = 2.65
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Hannover"
+lat = 52.3744
+long = 9.7386
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Poznan"
+lat = 52.4
+long = 16.9167
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Lyon"
+lat = 45.76
+long = 4.84
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Nuremberg"
+lat = 49.4539
+long = 11.0775
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Leicester"
+lat = 52.6333
+long = -1.1333
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Murcia"
+lat = 37.9861
+long = -1.1303
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Bratislava"
+lat = 48.1447
+long = 17.1128
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Duisburg"
+lat = 51.4322
+long = 6.7611
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Rouen"
+lat = 49.4428
+long = 1.0886
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Edinburgh"
+lat = 55.953
+long = -3.189
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Caerdydd"
+lat = 51.4833
+long = -3.1833
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Strasbourg"
+lat = 48.5833
+long = 7.7458
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Nancy"
+lat = 48.6936
+long = 6.1846
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Zurich"
+lat = 47.3786
+long = 8.54
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Eindhoven"
+lat = 51.4408
+long = 5.4778
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Metz"
+lat = 49.1203
+long = 6.1778
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Bologna"
+lat = 44.4939
+long = 11.3428
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Florence"
+lat = 43.7714
+long = 11.2542
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Sintra"
+lat = 38.7974
+long = -9.3904
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "ACoruna"
+lat = 43.3713
+long = -8.4188
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Stoke-on-Trent"
+lat = 53
+long = -2.1833
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Bochum"
+lat = 51.4833
+long = 7.2167
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Coventry"
+lat = 52.4081
+long = -1.5106
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Bilbao"
+lat = 43.2569
+long = -2.9236
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Wuppertal"
+lat = 51.2667
+long = 7.1833
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Alicante"
+lat = 38.3453
+long = -0.4831
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Reading"
+lat = 51.4542
+long = -0.9731
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Belfast"
+lat = 54.5964
+long = -5.93
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Bielefeld"
+lat = 52.0167
+long = 8.5333
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Thessaloniki"
+lat = 40.6403
+long = 22.9356
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Bonn"
+lat = 50.7339
+long = 7.0997
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Bari"
+lat = 41.1253
+long = 16.8667
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Timisoara"
+lat = 45.7597
+long = 21.23
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Cordoba"
+lat = 37.8845
+long = -4.7796
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Cluj-Napoca"
+lat = 46.7667
+long = 23.6
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Munster"
+lat = 51.9625
+long = 7.6256
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Karlsruhe"
+lat = 49.0167
+long = 8.4
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Catania"
+lat = 37.5027
+long = 15.0873
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Mannheim"
+lat = 49.4878
+long = 8.4661
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "VilaNovadeGaia"
+lat = 41.1333
+long = -8.6167
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Brest"
+lat = 48.39
+long = -4.49
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Geneva"
+lat = 46.2
+long = 6.15
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+
+[[groundstation]]
+name = "Duren"
+lat = 50.8
+long = 6.4833
+
+[groundstation.computeparams]
+vcpu_count = 1
+mem_size_mib = 512
+rootfs = "client.img"
+

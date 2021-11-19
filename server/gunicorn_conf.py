@@ -10,12 +10,13 @@ host = os.getenv("HOST", "0.0.0.0")
 port = os.getenv("PORT", "80")
 bind_env = os.getenv("BIND", None)
 use_loglevel = os.getenv("LOG_LEVEL", "info")
+cores_str = os.getenv("CORES", str(multiprocessing.cpu_count()))
 if bind_env:
     use_bind = bind_env
 else:
     use_bind = "{host}:{port}".format(host=host, port=port)
 
-cores = multiprocessing.cpu_count()
+cores = float(cores_str)
 workers_per_core = float(workers_per_core_str)
 default_web_concurrency = workers_per_core * cores
 if web_concurrency_str:
@@ -27,6 +28,8 @@ else:
 # Gunicorn config variables
 loglevel = use_loglevel
 workers = web_concurrency
+max_requests=512
+max_requests_jitter=128
 bind = use_bind
 keepalive = 120
 errorlog = "-"
@@ -37,6 +40,7 @@ log_data = {
     "workers": workers,
     "bind": bind,
     # Additional, non-gunicorn variables
+    "cores": cores,
     "workers_per_core": workers_per_core,
     "host": host,
     "port": port,

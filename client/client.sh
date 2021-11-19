@@ -22,19 +22,32 @@ IP=$(/sbin/ip route | awk '/default/ { print $3 }')
 
 echo nameserver "$IP" > /etc/resolv.conf
 
-ping tw1.gst.celestial -c 1
+ulimit -n
+ulimit -Hn
+ulimit -Sn
 
-while ! nc -z "tw1.gst.celestial" "80" ; do
-    ping tw1.gst.celestial -c 1
-    echo "cannot reach tw1.gst.celestial:80"
-    sleep 5
-done
+ulimit -n 64000
+
+ulimit -n
+ulimit -Hn
+ulimit -Sn
 
 # configure and run twissandra proxy
 chmod +x tcp_proxy.bin
 cd /
-./tcp_proxy.bin --hosts=tw1.gst.celestial &
+#./tcp_proxy.bin --selection=ping --ping-hosts=tw1.gst.celestial &
+./tcp_proxy.bin --selection=api --api-endpoint="$IP" &
 export TWISSANDRA_HOST="localhost"
 export TWISSANDRA_PORT="80"
+
+while ! nc -w 5 -z "$TWISSANDRA_HOST" "$TWISSANDRA_PORT" ; do
+    echo "cannot reach $TWISSANDRA_HOST:$TWISSANDRA_PORT"
+    sleep 5
+done
+
+while ! curl -m 5 http://"$TWISSANDRA_HOST":"$TWISSANDRA_PORT" ; do
+    echo "cannot curl $TWISSANDRA_HOST:$TWISSANDRA_PORT"
+    sleep 5
+done
 
 locust --csv-full-history --headless --csv=/stats--headless --users 1 -H http://"$TWISSANDRA_HOST":"$TWISSANDRA_PORT"

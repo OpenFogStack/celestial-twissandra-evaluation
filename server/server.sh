@@ -26,18 +26,18 @@ echo "ls"
 ls
 echo "pwd"
 pwd
-
+ulimit -n 64000
 ping cass1.gst.celestial -c 2
 ping 10.255.0.10 -c 2
-while ! nc -z "10.255.0.10" "9042" ; do echo "cannot reach cass1.gst.celestial:9042" ; sleep 1 ; done
+while ! nc -z "cass1.gst.celestial" "9042" ; do echo "cannot reach cass1.gst.celestial:9042" ; sleep 1 ; done
 
-./cql_proxy.bin --hosts=cass1.gst.celestial &
-export CASSANDRA_HOST="localhost"
+#./cql_proxy.bin --hosts=cass1.gst.celestial &
+export CASSANDRA_HOST=cass1.gst.celestial
+
 sleep 10
 cd twissandra
-gunicorn -k egg:meinheld#gunicorn_worker -c "./gunicorn_conf.py"  "twissandra.wsgi:application"
-cd /
-cd rom/twissandra
-gunicorn -k egg:meinheld#gunicorn_worker -c "./gunicorn_conf.py" "twissandra.wsgi:application"
-cd /
-cat twissandra/wsgi.py
+
+# python3 manage.py sync_cassandra
+while true ; do
+    gunicorn -k egg:meinheld#gunicorn_worker -c "./gunicorn_conf.py"  "twissandra.wsgi:application"
+done

@@ -18,7 +18,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-GATEWAY_IP=$(/sbin/ip route | awk '/default/ { print $2 }')
+GATEWAY_IP=$(/sbin/ip route | awk '/default/ { print $3 }')
 IP=$(/sbin/ip route | awk 'FNR==2{ print $7 }')
 
 echo nameserver "$GATEWAY_IP" > /etc/resolv.conf
@@ -26,13 +26,13 @@ export CASSANDRA_CONF=/apache-cassandra-2.2.19/conf
 export CASSANDRA_CONFIG="$CASSANDRA_CONF"
 #export CASSANDRA_SEEDS=cassandraEU
 export CASSANDRA_CLUSTER_NAME=mycluster
-export CASSANDRA_DC=AS
+export CASSANDRA_DC=CASS1
 export CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
 export CASSANDRA_LISTEN_ADDRESS="$IP"
 
 echo "IP: $IP"
 /sbin/ip route
-
+ulimit -n 64000
 set -e
 
 : ${CASSANDRA_RPC_ADDRESS='0.0.0.0'}
@@ -70,4 +70,10 @@ sed -ri 's/^('"dc"'=).*/\1 '"$CASSANDRA_DC"'/' "$CASSANDRA_CONFIG/cassandra-rack
 #sed -ri 's/^('"rack"'=).*/\1 '"$CASSANDRA_RACK"'/' "$CASSANDRA_CONFIG/cassandra-rackdc.properties"
 
 cd apache-cassandra-2.2.19/bin
-./cassandra -f
+./cassandra
+
+while ! nc -z "$IP" "9042" ; do echo "cannot reach $IP:9042" ; sleep 1 ; done
+sleep 5
+./cqlsh --file=/init.cqlsh
+
+while true ; do sleep 1000 ; done

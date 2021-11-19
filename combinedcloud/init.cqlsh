@@ -1,0 +1,46 @@
+CREATE KEYSPACE twissandra
+WITH replication = {
+    'class': 'NetworkTopologyStrategy',
+    'CASS1' : 1
+};
+
+USE twissandra;
+
+CREATE TABLE users (
+    username text PRIMARY KEY,
+    password text
+);
+
+CREATE TABLE friends (
+    username text,
+    friend text,
+    since timestamp,
+    PRIMARY KEY (username, friend)
+);
+
+CREATE TABLE followers (
+    username text,
+    follower text,
+    since timestamp,
+    PRIMARY KEY (username, follower)
+);
+
+CREATE TABLE tweets (
+    tweet_id uuid PRIMARY KEY,
+    username text,
+    body text
+);
+
+CREATE TABLE userline (
+    username text,
+    time timeuuid,
+    tweet_id uuid,
+    PRIMARY KEY (username, time)
+) WITH CLUSTERING ORDER BY (time DESC);
+
+CREATE TABLE timeline (
+    username text,
+    time timeuuid,
+    tweet_id uuid,
+    PRIMARY KEY (username, time)
+) WITH CLUSTERING ORDER BY (time DESC);
